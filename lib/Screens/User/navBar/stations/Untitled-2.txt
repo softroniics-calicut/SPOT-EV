@@ -1,0 +1,53 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:lottie/lottie.dart';
+
+class StationReviewPage extends StatefulWidget {
+  const StationReviewPage({super.key});
+
+  @override
+  State<StationReviewPage> createState() => _StationReviewPageState();
+}
+
+class _StationReviewPageState extends State<StationReviewPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Reviews'),),
+      body: Column(children: [
+          Lottie.asset('Images/ratings.json'),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: TextFormField( decoration: InputDecoration(border: OutlineInputBorder(),hintText: 'Add Your Reviews...')),
+          ),
+          RatingBar.builder(
+   initialRating: 3,
+   minRating: 1,
+   direction: Axis.horizontal,
+   allowHalfRating: true,
+   itemCount: 5,
+   itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+   itemBuilder: (context, _) => Icon(
+     Icons.star,
+     color: Colors.amber,
+   ),
+   onRatingUpdate: (rating) {
+     print(rating);
+   },
+),
+ElevatedButton(onPressed: (){}, child: Text('Submit')),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(title: Text('dfs')),
+                );
+              },
+            ),
+          )
+      ]),
+    );
+  }
+}
